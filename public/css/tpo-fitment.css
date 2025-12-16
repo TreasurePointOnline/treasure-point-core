@@ -1,235 +1,322 @@
-/* TPO Fitment Core - Garage Bar Styles */
-.tpo-garage-bar {
-	background: #111;
-	border-bottom: 2px solid #dd0000;
-	padding: 10px 0;
-	width: 100%;
-    position: relative;
-    z-index: 999;
+/* =========================================
+   1. Reset & Variables
+   ========================================= */
+   :root {
+    --bg-primary: #121212;  /* Premium Dark Grey */
+    --bg-header: #222222;   /* Header Grey */
+    --bg-trust: #000000;    /* Black */
+    --accent-red: #D32F2F;  /* Urgent Red */
+    --text-white: #FFFFFF;
+    --text-grey: #b0b0b0;
+    --font-stack: 'Inter', sans-serif;
+    --container-width: 1400px; /* Wider for "Big Dog" feel */
 }
-.tpo-garage-bar .container {
-    max-width: 1200px;
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-stack);
+    background-color: #f4f4f4; /* Light body bg below header */
+    color: #333;
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    max-width: var(--container-width);
     margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* =========================================
+   2. Trust Bar
+   ========================================= */
+.trust-bar {
+    background-color: var(--bg-trust);
+    color: var(--text-grey);
+    font-size: 0.85rem;
+    padding: 8px 0;
+    border-bottom: 1px solid #333;
+}
+
+.trust-bar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.trust-right a {
+    color: var(--text-white);
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+/* =========================================
+   3. Main Header
+   ========================================= */
+.main-header {
+    background-color: var(--bg-header);
+    padding: 20px 0;
+    color: var(--text-white);
+}
+
+.header-inner {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 40px;
 }
-.garage-label {
+
+/* Logo */
+.logo h1 {
+    font-size: 2rem;
     font-weight: 700;
-    text-transform: uppercase;
-    color: #dd0000;
-    letter-spacing: 1px;
+    margin: 0;
+    letter-spacing: -0.5px;
 }
-.tpo-garage-bar select {
-    background: #222;
-    color: #fff;
-    border: 1px solid #444;
-    padding: 8px 12px;
-    border-radius: 4px;
-    font-size: 14px;
-    min-width: 150px;
+
+.logo a {
+    color: var(--text-white);
 }
-.tpo-garage-bar button#tpo-go-btn {
-    background: #dd0000;
-    color: #fff;
+
+/* Massive Search Bar */
+.search-wrapper {
+    flex-grow: 1;
+    max-width: 800px;
+}
+
+.search-form {
+    display: flex;
+    height: 50px; /* Big click target */
+}
+
+.search-form input {
+    flex-grow: 1;
+    padding: 0 20px;
+    font-size: 1.1rem;
     border: none;
-    padding: 8px 20px;
-    text-transform: uppercase;
-    font-weight: bold;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-.tpo-garage-bar button:disabled {
-    background: #444;
-    color: #777;
-    cursor: not-allowed;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+    font-family: var(--font-stack);
 }
 
-/* --- STOREFRONT DARK MODE OVERRIDES (OG Audio Style) --- */
-
-body, #page, .site-content, .entry-content, .storefront-breadcrumb {
-    background-color: #121212 !important;
-    color: #e0e0e0 !important;
-}
-
-/* Header Base */
-.site-header {
-    background-color: #000000 !important;
-    border-bottom: 3px solid #dd0000 !important;
-    padding-top: 15px !important;
-    padding-bottom: 15px !important;
-    margin-bottom: 0 !important;
-}
-
-/* Navigation Links */
-.main-navigation ul li a, 
-.site-title a, 
-.site-description {
-    color: #ffffff !important;
+.search-form button {
+    background-color: var(--accent-red);
+    color: var(--text-white);
+    border: none;
+    padding: 0 35px;
+    font-size: 1rem;
     font-weight: 700;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
     text-transform: uppercase;
-}
-.main-navigation ul li a:hover {
-    color: #dd0000 !important;
+    transition: background-color 0.2s;
 }
 
-/* Headings */
-h1, h2, h3, h4, h5, h6, .widget-title {
-    color: #ffffff !important;
+.search-form button:hover {
+    background-color: #b71c1c;
+}
+
+/* Account / Cart */
+.user-actions {
+    display: flex;
+    gap: 25px;
+}
+
+.user-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--text-white);
+}
+
+.user-link i {
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+    color: #ddd;
+}
+
+.user-link:hover i {
+    color: var(--accent-red);
+}
+
+/* =========================================
+   4. Red Navigation Bar (Sticky)
+   ========================================= */
+.main-nav {
+    background-color: var(--accent-red);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.nav-list {
+    display: flex;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-link {
+    display: block;
+    padding: 18px 25px;
+    color: var(--text-white);
+    font-weight: 600;
+    font-size: 1rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
-/* Links */
-a { color: #fff; text-decoration: none; }
-a:hover { color: #dd0000 !important; }
-
-/* Buttons */
-button, input[type="button"], input[type="reset"], input[type="submit"], .button, .added_to_cart {
-    background-color: #dd0000 !important;
-    color: #ffffff !important;
-    border-radius: 4px;
-    font-weight: bold;
-    text-transform: uppercase;
-    border: none;
-    transition: background 0.3s;
-}
-button:hover, .button:hover {
-    background-color: #b30000 !important;
+.nav-link:hover {
+    background-color: rgba(0,0,0,0.1);
 }
 
-/* Footer */
-.site-footer {
-    display: none !important;
+.nav-link i {
+    font-size: 0.8rem;
+    margin-left: 5px;
+    opacity: 0.8;
 }
 
-/* SEO Banner Improvements */
-.tpo-hero-banner {
-    position: relative;
-    text-align: center;
-    color: #fff;
-}
-
-.tpo-banner-overlay {
+/* =========================================
+   5. Mega Menu (CSS Only Hover)
+   ========================================= */
+.mega-menu {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.6);
-    padding: 20px;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 800px;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    width: 100vw; /* Full width relative to viewport, usually requires nav relative override or specific positioning. simpler strategy below */
+    width: 900px; /* Fixed width for stability in this layout */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    display: none; /* Hidden by default */
+    padding: 30px 0;
+    border-top: 5px solid #b71c1c;
+    z-index: 999;
 }
 
-.tpo-banner-overlay h1 {
-    font-size: 2.5rem;
-    color: #fff !important;
+/* Display on Hover */
+.dropdown:hover .mega-menu {
+    display: block;
+}
+
+.mega-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.mega-col h3 {
+    font-size: 1.1rem;
+    color: var(--bg-header);
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.mega-col ul li {
+    margin-bottom: 8px;
+}
+
+.mega-col ul li a {
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.mega-col ul li a:hover {
+    color: var(--accent-red);
+    text-decoration: underline;
+}
+
+/* Promo Column in Mega Menu */
+.promo-col {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.menu-promo h4 {
+    color: var(--accent-red);
+    font-size: 1.2rem;
     margin-bottom: 10px;
 }
 
-.tpo-banner-overlay p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    color: #ddd;
+.menu-promo p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    color: #666;
 }
 
-
-/* Product Cards */
-ul.products li.product {
-    background-color: #1e1e1e !important;
-    border: 1px solid #333 !important;
-    border-radius: 6px;
-    padding: 15px !important;
+.promo-btn {
+    display: inline-block;
+    background-color: var(--bg-header);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 600;
 }
-ul.products li.product:hover {
-    border-color: #dd0000 !important;
-}
-ul.products li.product .price {
-    color: #dd0000 !important;
-    font-weight: bold;
-}
-.page-template-template-homepage .entry-header { display: none; }
 
-/* --- HEADER LAYOUT REFINEMENTS (OG Audio Style) --- */
+.promo-btn:hover {
+    background-color: black;
+}
 
-@media (min-width: 768px) {
-    .site-header .col-full {
-        display: flex !important;
-        align-items: center;
-        justify-content: space-between;
+/* =========================================
+   6. Content Area (Placeholder)
+   ========================================= */
+.content-area {
+    padding: 60px 0;
+    min-height: 500px;
+}
+
+.hero-placeholder {
+    text-align: center;
+    background: white;
+    padding: 60px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.hero-placeholder h2 {
+    font-size: 2.5rem;
+    color: var(--bg-header);
+    margin-bottom: 15px;
+}
+
+/* Responsive (Basic) */
+@media (max-width: 992px) {
+    .header-inner {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .search-wrapper {
+        width: 100%;
+        max-width: 100%;
+    }
+    .nav-list {
         flex-wrap: wrap;
-        position: relative;
     }
-
-    /* Logo */
-    .site-branding {
-        flex: 0 0 auto;
-        margin-right: 30px;
-        margin-bottom: 0 !important;
-        float: none !important;
-        width: auto !important;
-    }
-
-    /* Search Bar - Center and Wide */
-    .site-search {
-        flex: 1 1 auto;
-        float: none !important;
-        clear: none !important;
-        margin-right: 30px !important;
-        width: auto !important;
-    }
-    
-    .site-search .widget_product_search form {
-        display: flex;
-    }
-
-    .site-search .widget_product_search form input[type=search],
-    .site-search .widget_search form input[type=search] {
-        width: 100% !important;
-        background-color: #fff !important;
-        color: #333 !important;
-        border: 2px solid #dd0000 !important;
-        border-radius: 4px 0 0 4px !important;
-        height: 45px !important;
-        padding: 10px !important;
-    }
-
-    .site-search .widget_product_search form button,
-    .site-search .widget_search form button {
-        width: 60px !important;
-        border-radius: 0 4px 4px 0 !important;
-        height: 45px !important;
-        background-color: #dd0000 !important;
-    }
-
-    /* Header Widget Area (Phone Number) */
-    .storefront-header-widget-area {
-        flex: 0 0 auto;
-        float: none !important;
-        margin-right: 20px;
-        color: #fff;
-        font-weight: bold;
-        font-size: 1.2em;
-        display: block !important;
-    }
-    
-    .site-header-cart {
-        flex: 0 0 auto;
-        width: auto !important;
-        float: none !important;
-    }
-
-    /* Navigation Row */
-    .storefront-primary-navigation {
-        width: 100% !important;
-        flex: 1 0 100%;
-        order: 99;
-        border-top: 1px solid #333;
-        padding-top: 10px;
-        margin-top: 15px;
+    .mega-menu {
+        width: 100%;
+        position: static;
+        display: none;
     }
 }
